@@ -119,9 +119,11 @@ RUN set -x \
 RUN set -x \
   && : "Create home directory for all user" \
   && mkdir -p /home/dev \
-  && chmod -R 777 /home/dev \
-  && echo "alias python=python3" >> ~/.bashrc \
-  && source ~/.bashrc
+  && chmod -R 777 /home/dev
+
+RUN set -x \
+  && echo "alias python=python3" > ~/.bashrc \
+  && bash -c 'source ~/.bashrc'
 
 ENV SOURCE_DIR=/workspace
 ENV TERM=xterm-256color
